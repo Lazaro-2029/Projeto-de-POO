@@ -1,10 +1,9 @@
-class Avaliador {
+ class Avaliador {
     private Usuario user;
     private Obra[] obrasAvaliadas;
     public Avaliador(Usuario user, Obra[] obrasAvaliadas){
         this.obrasAvaliadas = obrasAvaliadas;
         this.user = user;
-
     }
 
     public void setUser(Usuario user) {
