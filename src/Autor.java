@@ -1,26 +1,105 @@
+import java.util.ArrayList;
 import java.util.List;
 
 class Autor {
     private Usuario user;
-    private Obra[] obrasEscritas;
-    public Autor(Usuario user,Obra[] obrasEscritas){
+    private ArrayList<Obra> obras;
+
+    public Autor(Usuario user){
+        setUser(user);
+        this.obras = new ArrayList<>();
+    }
+
+    public void setUser(Usuario user) {
+        if (user == null) {
+            throw new IllegalArgumentException("USUÁRIO VAZIO NÃO ACEITO");
+        }
         this.user = user;
-        this.obrasEscritas = obrasEscritas;
     }
-
-    public Obra[] getObrasEscritas() {
-        return obrasEscritas;
-    }
-
-    public void setObrasEscritas(Obra[] obrasEscritas) {
-        this.obrasEscritas = obrasEscritas;
-    }
-
     public Usuario getUser() {
         return user;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+
+
+    //-------------------------------------------------
+    public void cadastrarObra(String nome, String genero, int ano){
+        Obra novaobra = new Obra(nome, genero, ano,this);
+        obras.add(novaobra);
     }
+
+    public void listarObras(){
+        if (obras.isEmpty()){
+            System.out.println("Nenhuma obra encontrada.");
+            return;
+        }
+
+        for (Obra obra : obras){
+            obra.exibirDados();
+            System.out.println("----------");
+        }
+    }
+    public void excluirObra(int id){
+        Obra obra = buscarObraPorId(id);
+
+        if (obra == null){
+            throw new IllegalArgumentException("Obra não encontrada");
+        }
+
+        obras.remove(obra);
+    }
+
+    //----------------------------------------------------------------------------
+    public Obra buscarObraPorId(int id) {
+        for (Obra obra : obras) {
+            if (obra.getId() == id) {
+                return obra;
+            }
+        }
+        return null;
+    }
+    //----------------------------------------------------------------------------
+    public void alterarTituloObra(int id, String novoTitulo) {
+        Obra obra = buscarObraPorId(id);
+
+        if (obra == null) {
+            throw new IllegalArgumentException("Obra não encontrada");
+        }
+
+        obra.setTitulo(novoTitulo);
+    }
+    //----------------------------------------------------------------------------
+    public void alterarGeneroObra(int id, String novoGenero) {
+        Obra obra = buscarObraPorId(id);
+
+        if (obra == null) {
+            throw new IllegalArgumentException("Obra não encontrada");
+        }
+
+        obra.setGenero(novoGenero);
+    }
+    //----------------------------------------------------------------------------
+    public void alterarAnoObra(int id, int novoano) {
+        Obra obra = buscarObraPorId(id);
+
+        if (obra == null) {
+            throw new IllegalArgumentException("Obra não encontrada");
+        }
+
+        obra.setAno(novoano);
+    }
+    //----------------------------------------------------------------------------
+    public ArrayList<Obra> getObras() {
+        return obras;
+    }
+
+    public void exibirAutor() {
+        user.exibirDados();
+        System.out.println("Quantidade de obras: " + obras.size());
+    }
+
+    //----------------------------------------------------------------------------
 }
+
+
+
