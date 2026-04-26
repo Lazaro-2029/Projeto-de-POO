@@ -15,7 +15,7 @@ class Autor {
         }
         this.user = user;
     }
-    public Usuario getUser() {
+    public Usuario getautor() {
         return user;
     }
 
