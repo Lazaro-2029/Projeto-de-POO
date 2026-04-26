@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 class Autor {
     private Usuario user;
@@ -16,7 +15,7 @@ class Autor {
         }
         this.user = user;
     }
-    public Usuario getUser() {
+    public Usuario getautor() {
         return user;
     }
 

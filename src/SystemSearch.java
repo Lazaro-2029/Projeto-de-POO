@@ -42,7 +42,7 @@ class SystemSearch {
     }
     public Autor buscarAutorPorNome(String nome) {
         for (Autor autor : autoresguardados) {
-            if (autor.getUser().getNome().equalsIgnoreCase(nome)) {
+            if (autor.getautor().getNome().equalsIgnoreCase(nome)) {
                 return autor;
             }
         }
@@ -67,7 +67,7 @@ class SystemSearch {
         }
 
         for (Autor autor : autoresguardados) {
-            autor.getUser().exibirDados();
+            autor.getautor().exibirDados();
             System.out.println("-------------");
         }
     }
@@ -79,7 +79,7 @@ class SystemSearch {
         }
 
         for (Avaliador avaliador : avaliadorguardados) {
-            avaliador.getUser().exibirDados();
+            avaliador.getavaliador().exibirDados();
             System.out.println("-------------");
         }
     }
