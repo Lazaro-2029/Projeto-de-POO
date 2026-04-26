@@ -1,10 +1,14 @@
+import java.time.LocalDate;
 
 class Obra {
     private String titulo;
     private String genero;
     private int ano;
     private String status;
+    private LocalDate dataAvaliacao;
+
     private Autor autor;
+    private Avaliador avaliadorResponsavel;
 
     private int id;
     private static int contadorid = 1;
@@ -22,13 +26,22 @@ class Obra {
         contadorid++;
 
     }
+
+    public void setAvaliadorResponsavel(Avaliador avaliadorResponsavel) {
+        this.avaliadorResponsavel = avaliadorResponsavel;
+    }
+
+    public Avaliador getAvaliadorResponsavel() {
+        return avaliadorResponsavel;
+    }
+
     //---------------------------------------------------------------------------------
     public int getId() {
         return id;
     }
     //---------------------------------------------------------------------------------
     public void setTitulo(String titulo) {
-        if (titulo == null) {
+        if (titulo == null || titulo.isEmpty()) {
             throw new IllegalArgumentException("título não pode ser nulo");
         }
         this.titulo = titulo;
@@ -61,8 +74,6 @@ class Obra {
     public int getAno() {
         return ano;
     }
-
-    //------NÃO TERIA O SET JÁ QUE ELE COLOCA AUTMÁTICAMENTE PENDENTE EM NOVAS OBRAS---
 
 
     public void alterarStatus(String novoStatus){
@@ -113,11 +124,21 @@ class Obra {
         }
         this.ano = ano;
     }
+
+    public void setDataAvaliacao(LocalDate dataAvaliacao) {
+        this.dataAvaliacao = dataAvaliacao;
+    }
+
+    public LocalDate getDataAvaliacao() {
+        return dataAvaliacao;
+    }
+
+
     public void exibirDados() {
-        System.out.println("Título: " + getTitulo());
+        System.out.println("título: " + getTitulo());;
         System.out.println("Gênero: " + getGenero());
         System.out.println("Ano: " + getAno());
-        System.out.println("Autor: " + getAutor());
+        System.out.println("Autor: " + getAutor().getUser().getNome());;
         System.out.println("Status: " + getStatus());
     }
 

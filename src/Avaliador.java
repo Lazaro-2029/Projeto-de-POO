@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 class Avaliador {
     private Usuario usuarioAvaliador;
@@ -9,6 +10,9 @@ class Avaliador {
         this.obrasAvaliadas = new ArrayList<>();
 
     }
+
+    //-----------------------------------------------------
+
     public void setavaliador( Usuario useravaliador){
         if (useravaliador == null){
             throw new IllegalArgumentException("avaliador invalido bebe");
@@ -23,7 +27,7 @@ class Avaliador {
     public ArrayList<Obra> getObrasAvaliadas(){
         return obrasAvaliadas;
     }
-
+//--------------------------------------------------------------
     public void aprovarObra(int id, SystemSearch sistema){
         Obra obra = sistema.buscarporObra(id);
 
@@ -33,10 +37,15 @@ class Avaliador {
         if (!obra.getStatus().equalsIgnoreCase("PENDENTE")) {
             throw new IllegalArgumentException("Essa obra já foi avaliada");
         }
+
+        if (obra.getAvaliadorResponsavel() != this){
+            throw new IllegalArgumentException("Você não é o avaliador responsável por esta obra");
+        }
         obra.alterarStatus("APROVADO");
+        obra.setDataAvaliacao(LocalDate.now());
         obrasAvaliadas.add(obra);
     }
-
+//--------------------------------------------------------
     public void reprovarObra(int id, SystemSearch sistema){
         Obra obra = sistema.buscarporObra(id);
 
@@ -48,9 +57,15 @@ class Avaliador {
             throw new IllegalArgumentException("Essa obra já foi avaliada");
         }
 
+        if (obra.getAvaliadorResponsavel() != this){
+            throw new IllegalArgumentException("Você não é o avaliador responsável por esta obra");
+        }
+
         obra.alterarStatus("REPROVADO");
+        obra.setDataAvaliacao(LocalDate.now());
         obrasAvaliadas.add(obra);
     }
+//------------------------------------------------------
 
     public void listarObrasAvaliadas(){
         if(obrasAvaliadas.isEmpty()){
@@ -63,12 +78,5 @@ class Avaliador {
             System.out.println("-----------");
         }
     }
-    public void listarObrasPendentes() {
-        for (Obra obra : obrasAvaliadas) {
-            if (obra.getStatus().equalsIgnoreCase("PENDENTE")) {
-                obra.exibirDados();
-                System.out.println("-----------");
-            }
-        }
-    }
+
 }

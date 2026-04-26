@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 class Autor {
     private Usuario user;
@@ -40,14 +39,18 @@ class Autor {
             System.out.println("----------");
         }
     }
-    public void excluirObra(int id){
+    public void excluirObra(int id, SystemSearch sistema){
         Obra obra = buscarObraPorId(id);
 
         if (obra == null){
             throw new IllegalArgumentException("Obra não encontrada");
         }
 
+        if (!obra.getStatus().equalsIgnoreCase("PENDENTE")){
+            throw new IllegalArgumentException("Só é possível excluir obras pendentes");
+        }
         obras.remove(obra);
+        sistema.removerObra(obra);
     }
 
     //----------------------------------------------------------------------------
@@ -66,7 +69,9 @@ class Autor {
         if (obra == null) {
             throw new IllegalArgumentException("Obra não encontrada");
         }
-
+        if (!obra.getStatus().equalsIgnoreCase("PENDENTE")) {
+            throw new IllegalArgumentException("Só é possível alterar ou excluir obras pendentes");
+        }
         obra.setTitulo(novoTitulo);
     }
     //----------------------------------------------------------------------------
@@ -76,7 +81,9 @@ class Autor {
         if (obra == null) {
             throw new IllegalArgumentException("Obra não encontrada");
         }
-
+        if (!obra.getStatus().equalsIgnoreCase("PENDENTE")) {
+            throw new IllegalArgumentException("Só é possível alterar ou excluir obras pendentes");
+        }
         obra.setGenero(novoGenero);
     }
     //----------------------------------------------------------------------------
@@ -86,7 +93,9 @@ class Autor {
         if (obra == null) {
             throw new IllegalArgumentException("Obra não encontrada");
         }
-
+        if (!obra.getStatus().equalsIgnoreCase("PENDENTE")) {
+            throw new IllegalArgumentException("Só é possível alterar ou excluir obras pendentes");
+        }
         obra.setAno(novoano);
     }
     //----------------------------------------------------------------------------
