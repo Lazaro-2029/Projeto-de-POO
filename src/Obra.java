@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 
 class Obra {
     private String titulo;
@@ -65,6 +63,19 @@ class Obra {
     }
 
     //------NÃO TERIA O SET JÁ QUE ELE COLOCA AUTMÁTICAMENTE PENDENTE EM NOVAS OBRAS---
+
+
+    public void alterarStatus(String novoStatus){
+        if (!novoStatus.equalsIgnoreCase("APROVADO") &&
+                !novoStatus.equalsIgnoreCase("REPROVADO") &&
+                !novoStatus.equalsIgnoreCase("PENDENTE")) {
+
+            throw new IllegalArgumentException("Status inválido");
+        }
+
+        this.status = novoStatus.toUpperCase();
+    }
+
 
     public String getStatus() {
         return status;

@@ -1,34 +1,98 @@
+import java.util.ArrayList;
+
 class SystemSearch {
-    private Obra[] obras;
-    private Autor[] autores;
-    private Avaliador[] avaliadores;
-    public SystemSearch(Obra[] obras, Autor[] autores, Avaliador[] avaliadores){
-        this.obras = obras;
-        this.autores = autores;
-        this.avaliadores = avaliadores;
+    private ArrayList<Obra> obrasguardadas;
+    private ArrayList<Autor>autoresguardados;
+    private ArrayList<Avaliador> avaliadorguardados;
+
+
+    public SystemSearch(){
+        this.obrasguardadas = new ArrayList<>(obrasguardadas);
+        this.autoresguardados = new ArrayList<>(autoresguardados);
+        this.avaliadorguardados = new ArrayList<>(avaliadorguardados);
     }
 
-    public Obra[] getObras() {
-        return obras;
+    public void cadastrarAutor(Autor novoautor){
+        if (novoautor == null){
+        throw new IllegalArgumentException("cadastro de autor inválido no sistema");
+        }
+        autoresguardados.add(novoautor);
     }
 
-    public void setObras(Obra[] obras) {
-        this.obras = obras;
+    public void cadastrarAvaliador(Avaliador novoavaliador){
+        if (novoavaliador == null){
+            throw new IllegalArgumentException("cadastro de avaliador inválido no sistema");
+        }
+        avaliadorguardados.add(novoavaliador);
     }
 
-    public Autor[] getAutores() {
-        return autores;
+    public void cadastrarObra(Obra novaobra){
+        if (novaobra == null){
+            throw new IllegalArgumentException("cadastro de obra inválido no sistema");
+        }
+        obrasguardadas.add(novaobra);
+    }
+    public Obra buscarporObra(int id){
+        for (Obra Obra : obrasguardadas){
+            if (Obra.getId() == id){
+                return Obra;
+            }
+        }
+        return null;
+    }
+    public Autor buscarAutorPorNome(String nome) {
+        for (Autor autor : autoresguardados) {
+            if (autor.getUser().getNome().equalsIgnoreCase(nome)) {
+                return autor;
+            }
+        }
+        return null;
+    }
+    public void listarTodasObras() {
+        if (obrasguardadas.isEmpty()) {
+            System.out.println("Nenhuma obra listada no sistema.");
+            return;
+        }
+
+        for (Obra obra : obrasguardadas) {
+            obra.exibirDados();
+            System.out.println("-------------");
+        }
     }
 
-    public void setAutores(Autor[] autores) {
-        this.autores = autores;
+    public void listarAutores() {
+        if (autoresguardados.isEmpty()) {
+            System.out.println("Nenhum autor listado no sistema.");
+            return;
+        }
+
+        for (Autor autor : autoresguardados) {
+            autor.getUser().exibirDados();
+            System.out.println("-------------");
+        }
     }
 
-    public Avaliador[] getAvaliadores() {
-        return avaliadores;
+    public void listarAvaliadores() {
+        if (avaliadorguardados.isEmpty()) {
+            System.out.println("Nenhum avaliador listado no sistema.");
+            return;
+        }
+
+        for (Avaliador avaliador : avaliadorguardados) {
+            avaliador.getUser().exibirDados();
+            System.out.println("-------------");
+        }
     }
 
-    public void setAvaliadores(Avaliador[] avaliadores) {
-        this.avaliadores = avaliadores;
+    public ArrayList<Autor> getAutores() {
+        return autoresguardados;
+    }
+
+    public ArrayList<Avaliador> getAvaliadores() {
+        return avaliadorguardados;
+    }
+
+    public ArrayList<Obra> getObras() {
+        return obrasguardadas;
     }
 }

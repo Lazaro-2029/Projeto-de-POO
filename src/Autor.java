@@ -23,9 +23,10 @@ class Autor {
 
 
     //-------------------------------------------------
-    public void cadastrarObra(String nome, String genero, int ano){
+    public void cadastrarObra(String nome, String genero, int ano, SystemSearch sistema){
         Obra novaobra = new Obra(nome, genero, ano,this);
         obras.add(novaobra);
+        sistema.cadastrarObra(novaobra);
     }
 
     public void listarObras(){
