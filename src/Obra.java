@@ -138,7 +138,7 @@ class Obra {
         System.out.println("título: " + getTitulo());;
         System.out.println("Gênero: " + getGenero());
         System.out.println("Ano: " + getAno());
-        System.out.println("Autor: " + getAutor().getUser().getNome());;
+        System.out.println("Autor: " + getAutor().getautor().getNome());;
         System.out.println("Status: " + getStatus());
     }
 

@@ -36,7 +36,7 @@ class Relatorio {
 
     public void relatorioObrasPorAutor(SystemSearch sistema){
         for (Autor autor : sistema.getAutores()){
-            System.out.println("Autor: " + autor.getUser().getNome());
+            System.out.println("Autor: " + autor.getautor().getNome());
             System.out.println("Quantidade de obras: " + autor.getObras().size());
             System.out.println("-------------------");
         }

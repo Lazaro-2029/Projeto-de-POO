@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 class SystemSearch {
-    private ArrayList<Obra> obrasGuardadas
-            ;
+    private ArrayList<Obra> obrasGuardadas;
     private ArrayList<Autor>autoresGuardados;
     private ArrayList<Avaliador> avaliadoresGuardados;
 
@@ -74,7 +73,7 @@ class SystemSearch {
     }
     public Autor buscarAutorPorNome(String nome) {
         for (Autor autor : autoresGuardados) {
-            if (autor.getUser().getNome().equalsIgnoreCase(nome)) {
+            if (autor.getautor().getNome().equalsIgnoreCase(nome)) {
                 return autor;
             }
         }
@@ -140,7 +139,7 @@ class SystemSearch {
         boolean encontrou = false;
 
         for (Obra obra : obrasGuardadas){
-            if (obra.getAutor().getUser().getNome().equalsIgnoreCase(nomeAutor)){
+            if (obra.getAutor().getautor().getNome().equalsIgnoreCase(nomeAutor)){
                 obra.exibirDados();
                 System.out.println("-------------");
                 encontrou = true;
@@ -171,7 +170,7 @@ class SystemSearch {
         }
 
         for (Autor autor : autoresGuardados) {
-            autor.getUser().exibirDados();
+            autor.getautor().exibirDados();
             System.out.println("-------------");
         }
     }
